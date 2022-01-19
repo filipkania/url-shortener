@@ -1,4 +1,4 @@
-import { handleRequest } from '../src/handler';
+import { router } from "../src/router";
 import makeServiceWorkerEnv from 'service-worker-mock';
 
 declare var global: any;
@@ -9,10 +9,10 @@ describe('handle', () => {
         jest.resetModules();
     });
 
-    test('handle GET', async () => {
-        const result = await handleRequest(new Request('/', { method: 'GET' }));
+    test('handle shorten POST', async () => {
+        const result = await router.handle(new Request('/api/shorten', { method: 'POST' }));
         expect(result.status).toEqual(200);
         const text = await result.text();
-        expect(text).toEqual('request method: GET');
+        expect(text).toEqual('shorten your url! :^)');
     });
 });
