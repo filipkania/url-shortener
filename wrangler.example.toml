@@ -6,6 +6,10 @@ route = ""
 workers_dev = true
 compatibility_date = "2022-01-19"
 
+kv_namespaces = [ 
+    { binding = "URLS" }
+]
+
 [build]
 command = "npm install && npm run build"
 [build.upload]
