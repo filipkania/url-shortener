@@ -19,7 +19,7 @@ export default async (req: Request): Promise<Response> => {
 		if (!["https:", "http:"].includes(url.protocol) || url.host.length <= 2)
 			throw new Error("Protocol must be one of: http, https.");
 
-		let key = data.key;
+		let key = data.key?.replace(/[^\x00-\xFF]/g, "")?.toLowerCase();
 		if (!key || await URLS.get(key) !== null) {
 			for (let i = 0; i < 5; i++) {
 				key = Math.random().toString(36).slice(-6);
