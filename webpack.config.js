@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const transformer = require('ts-type-checked/transformer');
 
 module.exports = {
   entry: './src/index.ts',
@@ -14,9 +15,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts(x)?$/,
         loader: 'ts-loader',
         options: {
+          getCustomTransformers: program => ({
+            before: [transformer(program)],
+          }),
           // transpileOnly is useful to skip typescript checks occasionally:
           // transpileOnly: true,
         },
