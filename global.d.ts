@@ -5,8 +5,7 @@ declare global {
 }
 
 export interface Settings {
-    key?: string;
-    random?: boolean;
-    expire?: number;
+    key?: string | undefined;
+    expire?: number | undefined;
     url?: string;
 }
